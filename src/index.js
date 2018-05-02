@@ -7,11 +7,13 @@ window.d3 = d3;
 // SVG star path
 const starPath = 'M 0.000 20.000 L 23.511 32.361 L 19.021 6.180 L 38.042 -12.361 L 11.756 -16.180 L 0.000 -40.000 L -11.756 -16.180 L -38.042 -12.361 L -19.021 6.180 L -23.511 32.361 L 0.000 20.000';
 // pick a color
-const colors = c => d3.schemeSet3[c]; // const colors = t => d3.interpolatePiYG(t);
+const colors = c => d3.schemeSet3[c];
 
 let index = 0;
 
-// OFFSET prevents the stars from going outside the screen
+/* OFFSET prevents the stars from going outside the screen.
+* Random star object
+ */
 const getRandomStar = (index) => {
   const OFFSET = 38;
   let randX = OFFSET + (Math.random() * (self.innerWidth - OFFSET * 2));
@@ -48,10 +50,7 @@ const updateState = () => {
 };
 
 d3.interval(() => {
-  data = [...data, getRandomStar(index)];
+  data = [...data, getRandomStar(index)]; // update the "domain"
   updateState();
   index++;
-}, 500);
-
-
-// https://bost.ocks.org/mike/join/
+}, 1000); // 1s
